@@ -1,0 +1,33 @@
+package Utility;
+
+import java.util.HashMap;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
+
+import net.bytebuddy.asm.Advice.This;
+
+public class DriverManagement {
+	
+	
+	
+	
+	public WebDriver getDriver(String BrowserType)
+	{
+		WebDriver driver = null;
+		
+		if (BrowserType.equals("EDGE"))
+		{
+			System.setProperty("webdriver.edge.driver", "D:\\edgedriver_win32\\msedgedriver.exe");
+			
+			HashMap<String, Object> edgePrefs = new HashMap<String, Object>();
+			edgePrefs.put("profile.default_content_settings.popups", 0);
+			EdgeOptions options = new EdgeOptions();
+			
+			// Start Edge Session
+			driver = new EdgeDriver(options);
+		}
+		return driver;
+	}
+}

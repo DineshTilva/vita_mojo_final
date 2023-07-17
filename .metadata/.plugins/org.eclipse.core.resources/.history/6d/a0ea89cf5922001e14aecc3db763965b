@@ -1,0 +1,48 @@
+package PageObjects;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+import Utility.ComponentLibrary;
+
+public class LoginPage extends ComponentLibrary{
+
+	WebDriver driver;
+	
+	public LoginPage(WebDriver driver)
+	{
+		this.driver = driver;
+	}
+	
+	By LoginLink = By.linkText("Login");
+	By CreateAccountTab = By.className("css-1mewgnt.e1kmuswc0");
+	By txtName = By.id("firstName");
+	By txtEmail = By.id("email");
+	By txtPassword = By.id("password");
+	
+	
+	public void clickOnLoginLink()
+	{
+		getElement(driver, LoginLink).click();
+	}
+	
+	public void clickOnCreateUserTab()
+	{
+		//getElement(driver, CreateAccountTab).click();
+	}
+	
+	public void enterName(String name)
+	{
+		getElement(driver, txtName).sendKeys(name);
+	}
+	
+	public void enterEmail(String email)
+	{
+		getElement(driver, txtEmail).sendKeys(email);
+	}
+	
+	public void enterPassword(String password)
+	{
+		getElement(driver, txtEmail).sendKeys(password);
+	}
+}

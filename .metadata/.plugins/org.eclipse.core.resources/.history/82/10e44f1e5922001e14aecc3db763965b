@@ -1,0 +1,48 @@
+package Utility;
+
+import java.util.HashMap;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
+
+import net.bytebuddy.asm.Advice.This;
+
+public class DriverManagement {
+	
+	
+	
+	
+	public WebDriver getDriver(String BrowserType)
+	{
+		WebDriver driver = null;
+		
+		if (BrowserType.equals("EDGE"))
+		{
+			System.setProperty("webdriver.edge.driver", "D:\\edgedriver_win32\\msedgedriver.exe");
+			
+			HashMap<String, Object> edgePrefs = new HashMap<String, Object>();
+			edgePrefs.put("profile.default_content_settings.popups", 0);
+			EdgeOptions options = new EdgeOptions();
+			
+			// Start Edge Session
+			driver = new EdgeDriver(options);
+			driver.manage().window().maximize(); 
+			
+		}
+		else if(BrowserType.equals("CROME"))
+		{
+			System.setProperty("webdriver.chrome.driver","D:\\chromedriver_win32\\chromedriver.exe");
+		        // Instantiate a ChromeDriver class.
+		        driver = new ChromeDriver();
+		 
+		        // Maximize the browser
+		        driver.manage().window().maximize();
+		 
+		        
+		}
+		
+		return driver;
+	}
+}

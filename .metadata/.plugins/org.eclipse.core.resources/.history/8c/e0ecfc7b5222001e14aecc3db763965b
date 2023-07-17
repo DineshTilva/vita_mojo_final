@@ -1,0 +1,13 @@
+package Utility;
+
+import org.openqa.selenium.WebElement;
+
+public class ComponentLibrary {
+
+	public WebElement getElement()
+	{
+		WebElement we = null;
+		
+		return we;
+	}
+}

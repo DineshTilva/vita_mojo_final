@@ -1,0 +1,81 @@
+package StepDefinition;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import cucumber.api.PendingException;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+import org.junit.Assert;
+
+public class TestStepDefinition {
+	@Given("^I want to write a step with precondition$")
+	public void i_want_to_write_a_step_with_precondition(){
+	    // Write code here that turns the phrase above into concrete actions
+	    
+	}
+
+	@Given("^some other precondition$")
+	public void some_other_precondition(){
+	    // Write code here that turns the phrase above into concrete actions
+	    
+	}
+
+	@When("^I complete action$")
+	public void i_complete_action(){
+	    // Write code here that turns the phrase above into concrete actions
+	   
+	}
+
+	@When("^some other action$")
+	public void some_other_action(){
+	    // Write code here that turns the phrase above into concrete actions
+	    
+	}
+
+	@When("^yet another action$")
+	public void yet_another_action(){
+	    // Write code here that turns the phrase above into concrete actions
+	    
+	}
+
+	@Then("^I validate the outcomes$")
+	public void i_validate_the_outcomes(){
+	    // Write code here that turns the phrase above into concrete actions
+	   
+	}
+
+	@Then("^check more outcomes$")
+	public void check_more_outcomes(){
+	    // Write code here that turns the phrase above into concrete actions
+	   
+	}
+	
+	
+	@Given("User at VitaMojo site {string}")
+	public void user_at_VitaMojo_site(String string) {
+	    // Write code here that turns the phrase above into concrete actions
+	    
+	}
+
+	@Given("Navigate to Login Page")
+	public void navigate_to_Login_Page() {
+	    // Write code here that turns the phrase above into concrete actions
+	    
+	}
+
+	@When("User enter {string} {string} {string} {string} and press Create AccountButton")
+	public void user_enter_Dinesh_dt_gmail_com_qwer_discount_offer_option_and_press_Create_AccountButton(String name,String email,String pasword,String discountofferoption) {
+	    // Write code here that turns the phrase above into concrete actions
+	   
+	}
+
+	@Then("User Should be created and Sign in into system")
+	public void user_Should_be_created_and_Sign_in_into_system() {
+	    // Write code here that turns the phrase above into concrete actions
+	   
+	}
+
+}

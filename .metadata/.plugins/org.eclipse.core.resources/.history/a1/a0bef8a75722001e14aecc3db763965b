@@ -1,0 +1,26 @@
+package Utility;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+
+import net.bytebuddy.asm.Advice.This;
+
+public class DriverManagement {
+	
+	
+	
+	
+	public WebDriver getDriver(String BrowserType)
+	{
+		WebDriver driver = null;
+		
+		if (BrowserType.equals("EDGE"))
+		{
+			System.setProperty("webdriver.edge.driver", "D:\\edgedriver_win32\\msedgedriver.exe");
+			
+			// Start Edge Session
+			driver = new EdgeDriver();
+		}
+		return driver;
+	}
+}

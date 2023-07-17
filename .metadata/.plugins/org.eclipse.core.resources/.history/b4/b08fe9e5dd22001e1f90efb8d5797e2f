@@ -1,0 +1,61 @@
+package TestNG;
+
+import org.testng.annotations.Test;
+
+import com.google.gson.Gson;
+
+import POJO.SignIn;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+
+
+import static io.restassured.RestAssured.given;
+
+public class RestAssuredTest {
+
+		@Test
+		public void test1()
+		{
+			System.out.println("Jay Dwarkadhis");
+			System.out.println("Jay Dwarkadhis1");
+			 RestAssured.baseURI = "https://vmos2.vmos-demo.com";
+			 System.out.println("Jay Dwarkadhis2");
+			 
+			 SignIn si = new SignIn();
+			 si.setEmail("dt@gmail.com");
+			 si.setPassword("qwer1234");
+			 
+			 System.out.println("Jay Dwarkadhis");
+			 
+			 Gson gson = new Gson();
+			 String jsonString = gson.toJson(si);
+			
+			 /*
+			String requestBody = "{\n" +
+		            "  \"title\": \"foo\",\n" +
+		            "  \"body\": \"bar\",\n" +
+		            "  \"userId\": \"1\" \n}";
+			*/
+			 System.out.println(jsonString);
+			 
+			Response response = given()
+	                .header("Content-type", "application/json")
+	                .and()
+	                .body(jsonString)
+	                .when()
+	                .post("/user/v1/auth")
+	                .then()
+	                .extract().response();
+			System.out.println(response.prettyPrint());
+			
+			System.out.println(response.statusCode());
+	        Assertions.assertEquals(201, response.statusCode());
+	        //Assertions.assertEquals(si.getEmail(), response.jsonPath().getString("email"));
+	        Assertions.assertEquals(si.getPassword(), response.jsonPath().getString("password"));
+	       
+	        
+	        System.out.println(response.statusCode());
+		}
+}

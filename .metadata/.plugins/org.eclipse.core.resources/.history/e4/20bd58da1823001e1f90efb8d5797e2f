@@ -1,0 +1,16 @@
+Feature: VitaMojo Login Functionality
+
+Background: User is Logged In
+	Given User at VitaMojo site "https://automation.vmos-demo.com/" using "CROME"
+	And Navigate to Login Page
+    
+Scenario Outline: SignIn on VitaMojo
+	And Click on Login tab
+	And User Enter email as "<Email>"
+	And User Enter password as "<Password>"
+	And Go for Login 
+	Then User Should be Logged in system with Login Name as "<Name>"
+	
+	Examples: 
+		| Name    | Email         | Password | option |
+    | Dinesh1 | dt1@gmail.com | qwer1234 | yes    |

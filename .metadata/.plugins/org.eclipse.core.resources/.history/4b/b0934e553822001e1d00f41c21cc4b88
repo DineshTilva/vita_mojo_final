@@ -1,0 +1,18 @@
+Feature: VitaMojo Login Functionality
+
+
+    
+Scenario Outline: SignUp on VitaMojo
+	Given User at VitaMojo site "https://automation.vmos-demo.com/" 
+	And Navigate to Login Page
+	And Click on Create Account tab
+	When User enter Name as "<Name>" 
+	And User Enter email as "<Email>"
+	And  User Enter email as "<Password>"
+	And User select discount offer as "<discountofferoption>" 
+	And press Create AccountButton 
+	Then User Should be created and Sign in into system
+	
+	Examples: 
+		| Name   | Email        | Password | discount_offer_option
+    | Dinesh | dt@gmail.com | qwer1234 | yes

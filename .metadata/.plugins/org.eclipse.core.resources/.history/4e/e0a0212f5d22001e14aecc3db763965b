@@ -1,0 +1,85 @@
+package StepDefinition;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import PageObjects.LoginPage;
+import Utility.DriverManagement;
+import cucumber.api.PendingException;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+import org.junit.Assert;
+
+public class TestStepDefinition {
+	
+	WebDriver driver = null;
+	LoginPage loginPage = new LoginPage(driver);
+	
+
+	@Given("User at VitaMojo site {string} using {string}")
+	public void user_at_VitaMojo_site_using(String url, String BrowserType) {
+	    DriverManagement dm = new DriverManagement();
+	    driver = dm.getDriver(BrowserType);
+	    driver.get(url);  
+		
+	}
+	
+	@Given("Navigate to Login Page")
+	public void navigate_to_Login_Page() {
+	    // Write code here that turns the phrase above into concrete actions
+		LoginPage loginPage = new LoginPage(driver);
+		//loginPage.clickOnLoginLink();
+		driver.findElement(By.linkText("Login"));
+	}
+
+	@Given("Click on Create Account tab")
+	public void click_on_Create_Account_tab() {
+		LoginPage loginPage = new LoginPage(driver);
+		loginPage.clickOnLoginLink();
+	   
+	}
+	
+	@When("User enter Name as {string}")
+	public void user_enter_Name_as(String name) {
+		LoginPage loginPage = new LoginPage(driver);
+		loginPage.enterName(name);
+	   
+	}
+
+	@When("User Enter email as {string}")
+	public void user_Enter_email_as(String email) {
+		LoginPage loginPage = new LoginPage(driver);
+		loginPage.enterName(email);
+	   
+	}
+
+	@When("User select discount offer as {string}")
+	public void user_select_discount_offer_as(String string) {
+		System.out.println(string);
+	   
+	}
+
+	@When("press Create AccountButton")
+	public void press_Create_AccountButton() {
+	    // Write code here that turns the phrase above into concrete actions
+	   
+	}
+
+	@Then("User Should be created and Sign in into system")
+	public void user_Should_be_created_and_Sign_in_into_system() {
+	    // Write code here that turns the phrase above into concrete actions
+	    
+	}
+
+
+	
+
+
+}

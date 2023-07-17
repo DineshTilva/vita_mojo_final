@@ -1,0 +1,56 @@
+package TestNG;
+
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+import com.google.gson.Gson;
+
+import POJO.SignIn;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+
+
+import static io.restassured.RestAssured.given;
+
+public class RestAssuredTest {
+
+	
+		@Test
+		@Parameters({"email","password"}) 
+		public void SignUpTest(String email,String password)
+		{
+			
+		}
+		
+		
+		@Test
+		@Parameters({"email","password"}) 
+		public void SignInTest(String email,String password)
+		{
+			RestAssured.baseURI = "https://vmos2.vmos-demo.com";
+			
+			SignIn si = new SignIn();
+			si.setEmail(email);
+			si.setPassword(password);
+			 
+			Gson gson = new Gson();
+			String jsonString = gson.toJson(si);
+			
+			Response response = given()
+					.header("Content-type", "application/json")
+	                .and()
+	                .body(jsonString)
+	                .when()
+	                .post("/user/v1/auth")
+	                .then()
+	                .extract().response();
+			
+			Assertions.assertEquals(201, response.statusCode());
+	        Assertions.assertEquals("HTTP/1.1 201 Created", response.getStatusLine());
+	       
+		}
+		
+		
+}

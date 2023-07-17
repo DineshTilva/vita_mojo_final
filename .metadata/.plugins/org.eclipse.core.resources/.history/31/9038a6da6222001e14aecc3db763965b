@@ -1,0 +1,73 @@
+package PageObjects;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import Utility.ComponentLibrary;
+
+public class LoginPage extends ComponentLibrary{
+
+	WebDriver driver;
+	
+	public LoginPage(WebDriver driver)
+	{
+		this.driver = driver;
+	}
+	
+	By LoginLink = By.linkText("Login");
+	By CreateAccountTab = By.className("css-1mewgnt.e1kmuswc0");
+	By txtName = By.id("firstName");
+	By txtEmail = By.id("email");
+	By txtPassword = By.id("password");
+	By chkDO = By.className("css-psofcd.e379e0i1");
+	                         
+	public void clickOnLoginLink()
+	{
+		System.out.println("Start");
+		WebElement we = getElement(driver, LoginLink);
+		System.out.println("After fidelement");
+		we.click();
+		System.out.println("Finish");
+	}
+	
+	public void clickOnCreateUserTab()
+	{
+		getElement(driver, CreateAccountTab).click();
+	}
+	
+	public void enterName(String name)
+	{
+		getElement(driver, txtName).sendKeys(name);
+	}
+	
+	public void enterEmail(String email)
+	{
+		getElement(driver, txtEmail).sendKeys(email);
+	}
+	
+	public void enterPassword(String password)
+	{
+		getElement(driver, txtPassword).sendKeys(password);
+	}
+	
+	public void selectDiscountOffer(String DOChek)
+	{
+		WebElement we = getElement(driver, chkDO);
+		
+		if(DOChek.equalsIgnoreCase("yes"))
+		{
+			if (!we.isSelected())
+			{
+				we.click();
+			}
+		}
+		else
+		{
+			if (we.isSelected())
+			{
+				we.click(); //To un check
+			}
+		}
+	}
+}
