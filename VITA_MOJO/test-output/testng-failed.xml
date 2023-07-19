@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
-  <parameter name="password" value="qwer1234"/>
-  <parameter name="subscriptions" value="marketing"/>
-  <parameter name="storeUUID" value="9bd73863-0f1f-4265-a6bc-059a2541fbbf"/>
-  <parameter name="name" value="Dinesh21"/>
-  <parameter name="locale" value="en-GB"/>
-  <parameter name="email" value="dt21@gmail.com"/>
   <test thread-count="5" name="SignInTest(failed)">
     <groups>
       <run>

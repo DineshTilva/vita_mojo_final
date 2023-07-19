@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 
 import POJO.SignIn;
 import POJO.SignUp;
+import Utility.RestAssuredMethod;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
@@ -20,12 +21,11 @@ import java.util.Map;
 
 public class RestAssuredTest {
 
+		RestAssuredMethod RAMethod = new RestAssuredMethod();
 	
-		@Test(groups= {"Demo"},priority=1)  
-		@Parameters({"name","email","password","subscriptions","storeUUID","locale"}) 
-		public void SignUpTest(String name,String email,String password,String subscriptions,String storeUUID,String locale)
+		@Test(dataProvider = "data-provider", dataProviderClass = DataSource.class,groups= {"Demo"},priority=1)  
+		public void SignUpTest(String URI,String Path,String Contenttype,String Tenant,String name,String email,String password,String subscriptions,String storeUUID,String locale,String StatusCode)
 		{
-			RestAssured.baseURI = "https://vmos2.vmos-demo.com";
 			
 			SignUp signup = new SignUp();
 			signup.setfirstName(name);
@@ -40,28 +40,20 @@ public class RestAssuredTest {
 			String jsonString = gson.toJson(signup);
 						
 			Map<String, String> headerMap = new HashMap<String, String>();
-			headerMap.put("Content-type", "application/json");
-			headerMap.put("Tenant","582eaf39-7845-4e49-835c-a087032397fc");
-					
-			Response response = given()
-					.headers(headerMap)
-	                .and()
-	                .body(jsonString)
-	                .when()
-	                .post("/user/v1/user")
-	                .then()
-	                .extract().response();
+			if (!Contenttype.equals(""))
+				headerMap.put("Content-type", Contenttype);
+			if (!Tenant.equals(""))
+				headerMap.put("Tenant",Tenant);
 			
-			Assertions.assertEquals(201, response.statusCode());
-	       
+			Response response = RAMethod.PostMethod(URI,Path,headerMap,jsonString);
+			Assertions.assertEquals(Integer.parseInt(StatusCode), response.statusCode());
+	 		
 		}
 		
 		
-		@Test(groups= {"Demo"},priority=2)  
-		@Parameters({"email","password"}) 
-		public void SignInTest(String email,String password)
+		@Test(dataProvider = "data-provider", dataProviderClass = DataSource.class,groups= {"Demo"},priority=2)  
+		public void SignInTest(String URI,String Path,String Contenttype,String Tenant,String name,String email,String password,String subscriptions,String storeUUID,String locale,String StatusCode)
 		{
-			RestAssured.baseURI = "https://vmos2.vmos-demo.com";
 			
 			SignIn si = new SignIn();
 			si.setEmail(email);
@@ -70,17 +62,14 @@ public class RestAssuredTest {
 			Gson gson = new Gson();
 			String jsonString = gson.toJson(si);
 			
-			Response response = given()
-					.header("Content-type", "application/json")
-	                .and()
-	                .body(jsonString)
-	                .when()
-	                .post("/user/v1/auth")
-	                .then()
-	                .extract().response();
+			Map<String, String> headerMap = new HashMap<String, String>();
+			if (!Contenttype.equals(""))
+				headerMap.put("Content-type", Contenttype);
 			
-			Assertions.assertEquals(201, response.statusCode());
-	        Assertions.assertEquals("HTTP/1.1 201 Created", response.getStatusLine());
-	       
+			
+			Response response = RAMethod.PostMethod(URI,Path,headerMap,jsonString);
+			
+			Assertions.assertEquals(Integer.parseInt(StatusCode), response.statusCode());
+	  		
 		}
 }

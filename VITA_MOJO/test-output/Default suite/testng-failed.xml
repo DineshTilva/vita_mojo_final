@@ -6,7 +6,6 @@
       <class name="TestNG.RestAssuredTest">
         <methods>
           <include name="SignUpTest"/>
-          <include name="SignInTest"/>
         </methods>
       </class> <!-- TestNG.RestAssuredTest -->
     </classes>
